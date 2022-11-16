@@ -24,8 +24,8 @@ class Home extends Component {
         {this.state.movies && this.state.movies.map(movie => <div class="movie-container">
           <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
           <div class="title">{movie.title}</div>
-          {/* <div class="overview">{movie.overview}</div> */}
-          {/* <div class="rating">Rating: {movie.rating}</div> */}
+          <div class="overview">{movie.overview}</div> 
+           <div class="rating">Rating: {movie.rating}</div> 
         </div>)}
       </div>
     )
