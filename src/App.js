@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom'
 import Home from './pages/Home';
@@ -6,6 +6,17 @@ import Search from './pages/Search';
 import About from './pages/About';
 
 function App() {
+  // function Toggle(){
+  //   const [show,setShow] = useState(true)
+  //   return (
+  //     <div>
+  //     {
+  //       show?<h1>Hello World</h1>:null
+  //     }
+  //     <button onClick ={() => setShow(!show)}>Toggle</button>
+  //     </div>
+  //   )
+  //   }
   function nav(){
     return(
     <Router>
@@ -30,6 +41,7 @@ function App() {
   return (
       <div className="App">
          {/* <header className="App-header"> */}
+         {/* {Toggle()} */}
             {nav()}
          {/* </header>  */}
       </div>
