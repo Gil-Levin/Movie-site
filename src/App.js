@@ -6,17 +6,6 @@ import Search from './pages/Search';
 import About from './pages/About';
 
 function App() {
-  // function Toggle(){
-  //   const [show,setShow] = useState(true)
-  //   return (
-  //     <div>
-  //     {
-  //       show?<h1>Hello World</h1>:null
-  //     }
-  //     <button onClick ={() => setShow(!show)}>Toggle</button>
-  //     </div>
-  //   )
-  //   }
   function nav(){
     return(
     <Router>
