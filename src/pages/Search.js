@@ -1,40 +1,59 @@
 import React, { Component } from 'react'
 import { moviesMock } from '../mock/movies.mock';
 
-export default class Contact extends Component {
+class Contact extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
-
+    this.state = { movies:null };
+    this.title = "Search Page";
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleClick(id) {
+    const movie = this.state.movies.find((m) => m.id === id);
+    if(!!movie){
+      movie.isToggleOn = !movie.isToggleOn;
+      this.setState(() => ({
+        movies: this.state.movies
+      }));
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    console.log('The genre that was submitted is: ' + this.state.value);
-    const genreArr = moviesMock.map(key => key.genre);
-    // console.log(this.genreArr.filter(g => g.includes(event)))
-    for (let i = 0; i < genreArr.length; i++) {
-      console.log(genreArr[i])
     }
+  }
+  componentDidMount() {
+    this.loadMovies();
+  }
+  loadMovies() {
+    this.setState(() => ({ movies: moviesMock }));
+  }
+  handleChange(event) {
+    const moviesGenre = moviesMock.filter(i => i.genre.includes(event.target.value))
+    this.setState(() => ({movies:moviesGenre}))
     event.preventDefault();
   }
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
+      <h1>{this.title}</h1>
+      <form>
         <label>
           Genre:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
       </form>
+            {this.state.movies && this.state.movies.map(movie => <div onClick={() => { this.handleClick(movie.id) }} class="movie-container">
+            <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
+            <div class="title">{movie.title}</div>
+            <div class = "genre">{movie.genre}</div>
+            {!!movie.isToggleOn && < div >
+              <div class="overview">{movie.overview}</div>
+              <div class="rating">Rating: {movie.rating}</div>
+            </div>}
+          </div>)
+          }
+      </div>
+
     );
   }
 }
+export default Contact
 
 
