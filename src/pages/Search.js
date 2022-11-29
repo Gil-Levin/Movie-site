@@ -25,23 +25,34 @@ class Contact extends Component {
     this.setState(() => ({ movies: moviesMock }));
   }
   handleChange(event) {
-    const moviesGenre = moviesMock.filter(i => i.genre.includes(event.target.value))
+    const moviesGenre = moviesMock.filter(i => i.genre.toLowerCase().includes(event.target.value) || i.title.toLowerCase().includes(event.target.value))
     this.setState(() => ({movies:moviesGenre}))
     event.preventDefault();
   }
+
   render() {
     return (
       <div>
       <h1>{this.title}</h1>
       <form>
         <label>
-          Genre:
+          Filter by Genre or :
           <input type="text" onChange={this.handleChange} />
         </label>
       </form>
-            {this.state.movies && this.state.movies.map(movie => <div onClick={() => { this.handleClick(movie.id) }} class="movie-container">
-            <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
+      {/* or
+      <br></br>
+      <form>
+        <label>
+          Name:
+          <input type="text" onChange={this.handleChangeTitle} />
+        </label>
+      </form> */}
+            {this.state.movies && this.state.movies.map(movie =><div class="movie-container">
+            <div onClick={() => { this.handleClick(movie.id) }}>
+            <div  class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
             <div class="title">{movie.title}</div>
+            </div>
             <div class = "genre">{movie.genre}</div>
             {!!movie.isToggleOn && < div >
               <div class="overview">{movie.overview}</div>

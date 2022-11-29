@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { moviesMock } from '../mock/movies.mock';
+import EdiText from 'react-editext'
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
   title = 'Movies Page'
   state = {
-    movies: null
+    movies: null,
+    text: 'edit me'
   }
+
+  onSave($event, movieId, property) {
+    const movie = this.state.movies.find((m) => m.id === movieId);
+    movie[property] = $event;
+  }
+
   handleClick(id) {
     const movie = this.state.movies.find((m) => m.id === id);
-    if(!!movie){
+    if (!!movie) {
       movie.isToggleOn = !movie.isToggleOn;
       this.setState(() => ({
         movies: this.state.movies
@@ -20,11 +29,12 @@ class Home extends Component {
 
     }
   }
+  onAccept = (text) => {
+    this.setState({ text })
+  }
   componentDidMount() {
     this.loadMovies();
   }
-
-  // mock async behavior
   loadMovies() {
     moviesMock.forEach((movie) => movie.isToggleOn = false);
     this.setState(() => ({ movies: moviesMock }));
@@ -34,12 +44,38 @@ class Home extends Component {
     return (
       <div>
         <h1> {this.title} </h1>
-        {this.state.movies && this.state.movies.map(movie => <div onClick={() => { this.handleClick(movie.id) }} class="movie-container">
-          <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
-          <div class="title">{movie.title}</div>
+        {this.state.movies && this.state.movies.map(movie => <div class="movie-container">
+          <div onClick={() => { this.handleClick(movie.id) }}>
+            <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
+            <div class="title">{movie.title}</div>
+          </div>
+          {/* <EdiText
+        type='text'
+        value={movie.overview}
+        onSave={this.onSave}
+      /> */}
           {!!movie.isToggleOn && < div >
-            <div class="overview">{movie.overview}</div>
-            <div class="rating">Rating: {movie.rating}</div>
+            {/* <div class="overview">{movie.overview}</div> */}
+            {/* <div class="rating">Rating: {movie.rating}</div> */}
+            <div>GENRE</div>
+            <EdiText
+              type='text'
+              value={movie.genre}
+              onSave={($event) => this.onSave($event, movie.id, 'genre')}
+            />
+            <div>OVERVIEW</div>
+            <EdiText
+              type='text'
+              value={movie.overview}
+              onSave={($event) => this.onSave($event, movie.id, 'overview')}
+            />
+            <div>RATING</div>
+
+            <EdiText
+              type='text'
+              value={movie.rating}
+              onSave={($event) => this.onSave($event, movie.id, 'rating')}
+            />
           </div>}
         </div>)
         }
