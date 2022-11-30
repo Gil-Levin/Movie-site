@@ -34,21 +34,13 @@ class Contact extends Component {
     return (
       <div>
       <h1>{this.title}</h1>
-      <form>
-        <label>
-          Filter by Genre or :
-          <input type="text" onChange={this.handleChange} />
-        </label>
-      </form>
-      {/* or
-      <br></br>
-      <form>
-        <label>
-          Name:
-          <input type="text" onChange={this.handleChangeTitle} />
-        </label>
-      </form> */}
-            {this.state.movies && this.state.movies.map(movie =><div class="movie-container">
+        <form>
+          <label>
+            Filter by Genre or :
+            <input type="text" onChange={this.handleChange} />
+          </label>
+        </form>
+          {this.state.movies && this.state.movies.map(movie =><div class="movie-container">
             <div onClick={() => { this.handleClick(movie.id) }}>
             <div  class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
             <div class="title">{movie.title}</div>

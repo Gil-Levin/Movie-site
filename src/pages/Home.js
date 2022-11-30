@@ -39,7 +39,6 @@ class Home extends Component {
     moviesMock.forEach((movie) => movie.isToggleOn = false);
     this.setState(() => ({ movies: moviesMock }));
   }
-
   render() {
     return (
       <div>
@@ -49,30 +48,21 @@ class Home extends Component {
             <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
             <div class="title">{movie.title}</div>
           </div>
-          {/* <EdiText
-        type='text'
-        value={movie.overview}
-        onSave={this.onSave}
-      /> */}
           {!!movie.isToggleOn && < div >
             {/* <div class="overview">{movie.overview}</div> */}
             {/* <div class="rating">Rating: {movie.rating}</div> */}
-            <div>GENRE</div>
             <EdiText
               type='text'
               value={movie.genre}
               onSave={($event) => this.onSave($event, movie.id, 'genre')}
             />
-            <div>OVERVIEW</div>
             <EdiText
               type='text'
               value={movie.overview}
               onSave={($event) => this.onSave($event, movie.id, 'overview')}
             />
-            <div>RATING</div>
-
             <EdiText
-              type='text'
+              type="number"
               value={movie.rating}
               onSave={($event) => this.onSave($event, movie.id, 'rating')}
             />
