@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { moviesMock } from '../mock/movies.mock';
-import EdiText from 'react-editext'
 
 class Home extends Component {
   constructor(props) {
@@ -8,26 +7,22 @@ class Home extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.onSave = this.onSave.bind(this);
   }
-  title = 'Movies Page'
+  title = 'Home Page'
   state = {
     movies: null,
-    text: 'edit me'
   }
-
+    handleClick(id) {
+      const movie = this.state.movies.find((m) => m.id === id);
+      if (!!movie) {
+        movie.isToggleOn = !movie.isToggleOn;
+        this.setState(() => ({
+          movies: this.state.movies
+        }));
+      }
+    }
   onSave($event, movieId, property) {
     const movie = this.state.movies.find((m) => m.id === movieId);
     movie[property] = $event;
-  }
-
-  handleClick(id) {
-    const movie = this.state.movies.find((m) => m.id === id);
-    if (!!movie) {
-      movie.isToggleOn = !movie.isToggleOn;
-      this.setState(() => ({
-        movies: this.state.movies
-      }));
-
-    }
   }
   onAccept = (text) => {
     this.setState({ text })
@@ -49,23 +44,8 @@ class Home extends Component {
             <div class="title">{movie.title}</div>
           </div>
           {!!movie.isToggleOn && < div >
-            {/* <div class="overview">{movie.overview}</div> */}
-            {/* <div class="rating">Rating: {movie.rating}</div> */}
-            <EdiText
-              type='text'
-              value={movie.genre}
-              onSave={($event) => this.onSave($event, movie.id, 'genre')}
-            />
-            <EdiText
-              type='text'
-              value={movie.overview}
-              onSave={($event) => this.onSave($event, movie.id, 'overview')}
-            />
-            <EdiText
-              type="number"
-              value={movie.rating}
-              onSave={($event) => this.onSave($event, movie.id, 'rating')}
-            />
+            <div class="overview">{movie.overview}</div> 
+            <div class="rating">Rating: {movie.rating}</div>
           </div>}
         </div>)
         }
