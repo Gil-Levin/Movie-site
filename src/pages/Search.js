@@ -63,7 +63,7 @@ class Contact extends Component {
        <button>Add</button> 
         <form>
           <label>
-            Filter by Genre or :
+            Filter by Genre or Title:
             <input type = "text" onChange={this.handleChange} />
           </label>
         </form>
