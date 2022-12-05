@@ -13,22 +13,24 @@ class About extends Component {
         return (
             <div>
                 <h1>{this.state.title}</h1>
-                <h1>About this project:</h1>
-                <p>So firstly thank you for the oppertunity to send this a little later, i was struggeling with react from the beggining since i got a job in QA Automation,i used google for everything i wrote here because i didnt have enough time to go through all the react js tapes.
-                anyway this is just a simple site about movies that i generate from my json file, it has a homme page where you can just look at them with toggling the overview,genre and rating. the next page is serch and edit page, where you can serach for your favorite movie by name or genre, edit its description and rating or delete this movie all together but you can also add a movie of your own </p>
+                <h1>Hello, I am Gil. </h1>
+                <h1>I am a software developer.</h1> 
+
+                Welcome to my first, so unique site.
+                <br></br>Maybe it took me a while, but this site was made from all my heart. <br></br>
+                <br></br>
+                This site will find you every movie you want to watch (that exists in my json file),<br></br> 
+                With every keyword you can think of. <br></br>
+                <br></br>
+
+                Enjoy this site,<br></br>
+                And of course-<br></br>
+                Enjoy the movies. 
+                <br></br>
+                <br></br>
+            <img src="https://preview.redd.it/7qalrjf53th51.png?auto=webp&s=5394748cc864bcb0d0dd4b1809e17a3ef296e437" width="500" height="600"></img>
             </div>
         )
     }
 }
-
 export default About
-
-
-
-
-
-// const Edit = () => {
-//     return <h1>Blog Articles</h1>;
-//   };
-  
-//   export default Edit;
