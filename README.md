@@ -1,6 +1,7 @@
-this is a React Project.
+This is my React Project.
 
-this project is a basic movies site which displayes movies, lets you search for genres and read about them.
+This project is a basic movies site which displayes movies, lets you search for genres or names and read or edit them.
+you can also add a movie with all the stats that are required and the image will reandomly generate from a site i chose,and also delete a movie you dont want.
 
 my name is: Gil Levin.
 class: D130222ER.
