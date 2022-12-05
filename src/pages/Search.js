@@ -8,7 +8,7 @@ const EMPTY_NEW_MOVIE = {
   rating: 0,
   genre: ''
 }
-class Contact extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,9 +60,10 @@ class Contact extends Component {
   handleCreateMovie(event) {
     event.preventDefault()
     const newMovieCopy = { ...this.state.newMovie, id: Math.floor(Math.random() * 1000) };
-    newMovieCopy.imageUrl = "https://placeimg.com/185/104/animals?param=" + newMovieCopy.id;
+    newMovieCopy.imageUrl = "https://placeimg.com/185/104/arch?param=" + newMovieCopy.id;
     this.setState((prevState) => ({ movies: [...prevState.movies, newMovieCopy] }));
     this.setState({ newMovie: EMPTY_NEW_MOVIE });
+    this.setState({ isAddingOn: !this.state.isAddingOn })
   }
 
   handleAdding() {
@@ -87,7 +88,6 @@ class Contact extends Component {
           <label htmlFor="genre">Genre:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.genre} type="text" name="genre" />
           <button onClick={this.handleCreateMovie}>Save movie</button>
-          {/* <img src="https://placeimg.com/185/104/animals" alt="poster" /> */}
         </div>}
         <form>
           <label>
@@ -132,6 +132,6 @@ class Contact extends Component {
     );
   }
 }
-export default Contact
+export default Search
 
 

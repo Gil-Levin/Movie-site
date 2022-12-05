@@ -13,14 +13,14 @@ function App() {
       <nav>
         <div>
           <div><Link to ={'/'}>Home</Link></div>
-          <div><Link to ={'/search'}>Search</Link></div>
+          <div><Link to ={'/searchAndEdit'}>Search and Edit</Link></div>
           <div><Link to ={'/about'}>About</Link></div>
         </div>
       </nav>
       <Switch>
         <Route path = "/" exact component= {Home}></Route>
         <Route path = "/about" component= {About}></Route>
-        <Route path = "/search" component= {Search}></Route>
+        <Route path = "/searchAndEdit" component= {Search}></Route>
       </Switch>
       </div>
     </Router>

@@ -28,7 +28,7 @@ class About extends Component {
                 Enjoy the movies. 
                 <br></br>
                 <br></br>
-            <img src="https://preview.redd.it/7qalrjf53th51.png?auto=webp&s=5394748cc864bcb0d0dd4b1809e17a3ef296e437" width="500" height="600"></img>
+            <img src="https://preview.redd.it/7qalrjf53th51.png?auto=webp&s=5394748cc864bcb0d0dd4b1809e17a3ef296e437" alt ="funny" width="500" height="600"></img>
             </div>
         )
     }

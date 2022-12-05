@@ -45,6 +45,7 @@ class Home extends Component {
           </div>
           {!!movie.isToggleOn && < div >
             <div class="overview">{movie.overview}</div> 
+            <div class ="genre">Genre: {movie.genre}</div>
             <div class="rating">Rating: {movie.rating}</div>
           </div>}
         </div>)
