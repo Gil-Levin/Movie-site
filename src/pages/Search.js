@@ -45,8 +45,8 @@ class Search extends Component {
   onSave(value, movieId, property) {
     this.setState((prevState) => ({
       movies: prevState.movies.map(movie => {
-        if (movie.id === movieId) movie[property] = value
-        return movie
+        if (movie.id === movieId) movie[property] = value;
+        return movie;
       })
     }), () => {
       setMovies(this.state.movies);
@@ -86,56 +86,60 @@ class Search extends Component {
     return (
       <div>
         <h1>{this.title}</h1>
-        <button onClick={this.handleAdding}>Add</button>
-        {!!this.state.isAddingOn && <div>
+        <div className='filter-movies'>
+          <label>
+            Filter by Genre or Title:
+            <input type="text" onChange={this.handleChange} />
+          </label>
+        </div>
+        <button className='button add-button' onClick={this.handleAdding}>Add</button>
+        {!!this.state.isAddingOn && <div class="add-movie-container">
           <label htmlFor="title">Title:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.title} type="text" name="title" />
           <label htmlFor="overview">Overview:</label>
-          <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.overview} type="text" name="overview" />
+          <textarea onChange={this.handleNewMovieFormChange} value={this.state.newMovie.overview} name="overview" />
           <label htmlFor="rating">Rating:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.rating} type="number" name="rating" />
           <label htmlFor="genre">Genre:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.genre} type="text" name="genre" />
           <button onClick={this.handleCreateMovie}>Save movie</button>
         </div>}
-        <form>
-          <label>
-            Filter by Genre or Title:
-            <input type="text" onChange={this.handleChange} />
-          </label>
-        </form>
-        {this.state.movies && this.getMoviesForDisplay().map(movie => <div class="movie-container">
-          <div onClick={() => { this.handleClick(movie.id) }}>
-            <div class="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
-            {!movie.isToggleOn && <div>
-              <div class="title">{movie.title}</div>
+
+        <div className='movies-container'>
+          {this.state.movies && this.getMoviesForDisplay().map(movie => <div className="movie">
+            <div onClick={() => { this.handleClick(movie.id) }}>
+              <div className="movie-Url"><img src={movie.imageUrl} alt=''></img></div>
+              {!movie.isToggleOn && <div>
+                <div className="title">{movie.title}</div>
+              </div>}
+            </div>
+            <button className='button delete-button' onClick={() => { this.handleDelete(movie.id) }}>Delete</button>
+            {!!movie.isToggleOn && < div >
+              <EdiText className='edit-text'
+                type='text'
+                value={movie.title}
+                onSave={(value) => this.onSave(value, movie.id, 'title')}
+              />
+              <EdiText className='edit-text'
+                type='text'
+                value={movie.overview}
+                onSave={(value) => this.onSave(value, movie.id, 'overview')}
+              />
+              <EdiText className='edit-text'
+                type="number"
+                value={movie.rating}
+                onSave={(value) => this.onSave(value, movie.id, 'rating')}
+              />
+              <EdiText className='edit-text'
+                type='text'
+                value={movie.genre}
+                onSave={(value) => this.onSave(value, movie.id, 'genre')}
+              />
             </div>}
-          </div>
-          <button onClick={() => { this.handleDelete(movie.id) }}>Delete</button>
-          {!!movie.isToggleOn && < div >
-            <EdiText
-              type='text'
-              value={movie.title}
-              onSave={(value) => this.onSave(value, movie.id, 'title')}
-            />
-            <EdiText
-              type='text'
-              value={movie.genre}
-              onSave={(value) => this.onSave(value, movie.id, 'genre')}
-            />
-            <EdiText
-              type='text'
-              value={movie.overview}
-              onSave={(value) => this.onSave(value, movie.id, 'overview')}
-            />
-            <EdiText
-              type="number"
-              value={movie.rating}
-              onSave={(value) => this.onSave(value, movie.id, 'rating')}
-            />
-          </div>}
-        </div>)
-        }
+          </div>)
+          }
+        </div>
+        {this.state.movies && this.state.movies.length === 0 && <h1>No movies to display</h1>}
       </div>
 
     );

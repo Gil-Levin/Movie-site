@@ -1,36 +1,34 @@
-import React,{useState} from 'react';
+import React from 'react';
 import './App.css';
-import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home';
 import Search from './pages/Search';
 import About from './pages/About';
 
 function App() {
-  function nav(){
-    return(
-    <Router>
-      <div>
-      <nav>
+  function nav() {
+    return (
+      <Router>
         <div>
-          <div><Link to ={'/'}>Home</Link></div>
-          <div><Link to ={'/searchAndEdit'}>Search and Edit</Link></div>
-          <div><Link to ={'/about'}>About</Link></div>
+          <nav>
+            <div className="menu-item"><Link to={'/'}>Home</Link></div>
+            <div className="menu-item"><Link to={'/searchAndEdit'}>Search and Edit</Link></div>
+            <div className="menu-item"><Link to={'/about'}>About</Link></div>
+          </nav>
+          <Switch>
+            <Route path="/" exact component={Home}></Route>
+            <Route path="/about" component={About}></Route>
+            <Route path="/searchAndEdit" component={Search}></Route>
+          </Switch>
         </div>
-      </nav>
-      <Switch>
-        <Route path = "/" exact component= {Home}></Route>
-        <Route path = "/about" component= {About}></Route>
-        <Route path = "/searchAndEdit" component= {Search}></Route>
-      </Switch>
-      </div>
-    </Router>
-  );
-}
+      </Router>
+    );
+  }
 
   return (
-      <div className="App">
-            {nav()}
-      </div>
+    <div className="App">
+      {nav()}
+    </div>
   );
 }
 

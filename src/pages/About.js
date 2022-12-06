@@ -11,7 +11,7 @@ class About extends Component {
     
     render() {
         return (
-            <div>
+            <div className='paragraph'>
                 <h1>{this.state.title}</h1>
                 <h2>Hello, my name is Gil. </h2>
                 <h2>I am a software developer.</h2> 
@@ -28,7 +28,9 @@ class About extends Component {
                 Enjoy the movies. 
                 <br></br>
                 <br></br>
+            <div>
             <img src="https://preview.redd.it/7qalrjf53th51.png?auto=webp&s=5394748cc864bcb0d0dd4b1809e17a3ef296e437" alt ="funny" width="500" height="600"></img>
+            </div>
             </div>
         )
     }
