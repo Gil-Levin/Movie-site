@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { moviesMock } from '../mock/movies.mock';
+import { getMovies } from '../services/movieService';
 
 class Home extends Component {
   constructor(props) {
@@ -11,15 +11,15 @@ class Home extends Component {
   state = {
     movies: null,
   }
-    handleClick(id) {
-      const movie = this.state.movies.find((m) => m.id === id);
-      if (!!movie) {
-        movie.isToggleOn = !movie.isToggleOn;
-        this.setState(() => ({
-          movies: this.state.movies
-        }));
-      }
+  handleClick(id) {
+    const movie = this.state.movies.find((m) => m.id === id);
+    if (!!movie) {
+      movie.isToggleOn = !movie.isToggleOn;
+      this.setState(() => ({
+        movies: this.state.movies
+      }));
     }
+  }
   onSave($event, movieId, property) {
     const movie = this.state.movies.find((m) => m.id === movieId);
     movie[property] = $event;
@@ -31,9 +31,10 @@ class Home extends Component {
     this.loadMovies();
   }
   loadMovies() {
-    moviesMock.forEach((movie) => movie.isToggleOn = false);
-    this.setState(() => ({ movies: moviesMock }));
+    const movies = getMovies().map((movie) => ({ ...movie, isToggleOn: false }));
+    this.setState(() => ({ movies }));
   }
+
   render() {
     return (
       <div>
@@ -44,8 +45,8 @@ class Home extends Component {
             <div class="title">{movie.title}</div>
           </div>
           {!!movie.isToggleOn && < div >
-            <div class="overview">{movie.overview}</div> 
-            <div class ="genre">Genre: {movie.genre}</div>
+            <div class="overview">{movie.overview}</div>
+            <div class="genre">Genre: {movie.genre}</div>
             <div class="rating">Rating: {movie.rating}</div>
           </div>}
         </div>)

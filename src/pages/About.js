@@ -13,8 +13,8 @@ class About extends Component {
         return (
             <div>
                 <h1>{this.state.title}</h1>
-                <h1>Hello, I am Gil. </h1>
-                <h1>I am a software developer.</h1> 
+                <h2>Hello, my name is Gil. </h2>
+                <h2>I am a software developer.</h2> 
 
                 Welcome to my first, so unique site.
                 <br></br>Maybe it took me a while, but this site was made from all my heart. <br></br>

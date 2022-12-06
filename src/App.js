@@ -29,10 +29,7 @@ function App() {
 
   return (
       <div className="App">
-         {/* <header className="App-header"> */}
-         {/* {Toggle()} */}
             {nav()}
-         {/* </header>  */}
       </div>
   );
 }

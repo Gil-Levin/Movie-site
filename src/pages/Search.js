@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { moviesMock } from '../mock/movies.mock';
 import EdiText from 'react-editext';
+import { getMovies, setMovies } from '../services/movieService';
 
 const EMPTY_NEW_MOVIE = {
   title: '',
@@ -30,7 +30,8 @@ class Search extends Component {
     this.loadMovies();
   }
   loadMovies() {
-    this.setState(() => ({ movies: moviesMock }));
+    const movies = getMovies();
+    this.setState(() => ({ movies }));
   }
   handleClick(id) {
     const movie = this.state.movies.find((m) => m.id === id);
@@ -41,17 +42,23 @@ class Search extends Component {
       }));
     }
   }
+  onSave(value, movieId, property) {
+    this.setState((prevState) => ({
+      movies: prevState.movies.map(movie => {
+        if (movie.id === movieId) movie[property] = value
+        return movie
+      })
+    }), () => {
+      setMovies(this.state.movies);
+    })
+  }
   handleChange(event) {
     this.setState({ filterBy: event.target.value })
-  }
-  onSave($event, movieId, property) {
-    const movie = this.state.movies.find((m) => m.id === movieId);
-    movie[property] = $event;
   }
   handleDelete(id) {
     const movies = this.state.movies.filter(x => x.id !== id);
     if (!!movies) {
-      this.setState(() => ({ movies }));
+      this.setState(() => ({ movies }), () => { setMovies(this.state.movies) });
     }
   }
   getMoviesForDisplay() {
@@ -61,11 +68,13 @@ class Search extends Component {
     event.preventDefault()
     const newMovieCopy = { ...this.state.newMovie, id: Math.floor(Math.random() * 1000) };
     newMovieCopy.imageUrl = "https://placeimg.com/185/104/arch?param=" + newMovieCopy.id;
-    this.setState((prevState) => ({ movies: [...prevState.movies, newMovieCopy] }));
+    this.setState(
+      (prevState) => ({ movies: [...prevState.movies, newMovieCopy] }),
+      () => { setMovies(this.state.movies); }
+    );
     this.setState({ newMovie: EMPTY_NEW_MOVIE });
     this.setState({ isAddingOn: !this.state.isAddingOn })
   }
-
   handleAdding() {
     this.setState({ isAddingOn: !this.state.isAddingOn })
   }
@@ -84,7 +93,7 @@ class Search extends Component {
           <label htmlFor="overview">Overview:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.overview} type="text" name="overview" />
           <label htmlFor="rating">Rating:</label>
-          <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.rating} type="number" name="rating"/>
+          <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.rating} type="number" name="rating" />
           <label htmlFor="genre">Genre:</label>
           <input onChange={this.handleNewMovieFormChange} value={this.state.newMovie.genre} type="text" name="genre" />
           <button onClick={this.handleCreateMovie}>Save movie</button>
@@ -107,22 +116,22 @@ class Search extends Component {
             <EdiText
               type='text'
               value={movie.title}
-              onSave={($event) => this.onSave($event, movie.id, 'title')}
+              onSave={(value) => this.onSave(value, movie.id, 'title')}
             />
             <EdiText
               type='text'
               value={movie.genre}
-              onSave={($event) => this.onSave($event, movie.id, 'genre')}
+              onSave={(value) => this.onSave(value, movie.id, 'genre')}
             />
             <EdiText
               type='text'
               value={movie.overview}
-              onSave={($event) => this.onSave($event, movie.id, 'overview')}
+              onSave={(value) => this.onSave(value, movie.id, 'overview')}
             />
             <EdiText
               type="number"
               value={movie.rating}
-              onSave={($event) => this.onSave($event, movie.id, 'rating')}
+              onSave={(value) => this.onSave(value, movie.id, 'rating')}
             />
           </div>}
         </div>)

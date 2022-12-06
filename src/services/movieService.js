@@ -1,11 +1,12 @@
-export const moviesMock = [
+
+let movies = [
     {
         "id": 27205,
         "title": "Inception",
         "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: 'inception', the implantation of another person's idea into a target's subconscious.",
         "rating": 8.4,
         "imageUrl": "https://image.tmdb.org/t/p/w185/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
-        "genre":"action"
+        "genre": "action"
     },
     {
         "id": 157336,
@@ -13,7 +14,7 @@ export const moviesMock = [
         "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
         "rating": 8.4,
         "imageUrl": "https://image.tmdb.org/t/p/w185/vgnoBSVzWAV9sNQUORaDGvDp7wx.jpg",
-        "genre":"sci-fi"
+        "genre": "sci-fi"
     },
     {
         "id": 155,
@@ -21,7 +22,7 @@ export const moviesMock = [
         "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
         "rating": 8.5,
         "imageUrl": "https://image.tmdb.org/t/p/w185/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg",
-        "genre":"action"
+        "genre": "action"
     },
     {
         "id": 24428,
@@ -29,7 +30,7 @@ export const moviesMock = [
         "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
         "rating": 7.7,
         "imageUrl": "https://image.tmdb.org/t/p/w185/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg",
-        "genre":"adventure"
+        "genre": "adventure"
     },
     {
         "id": 293660,
@@ -77,7 +78,7 @@ export const moviesMock = [
         "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
         "rating": 8.5,
         "imageUrl": "https://image.tmdb.org/t/p/w185/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
-        "genre": "crime"  
+        "genre": "crime"
     },
     {
         "id": 13,
@@ -160,3 +161,11 @@ export const moviesMock = [
         "genre": "thriller"
     }
 ];
+
+export function getMovies() {
+    return movies;
+}
+
+export function setMovies(newMovies) {
+    movies = newMovies;
+}
