@@ -6,5 +6,4 @@ you can also add a movie with all the stats that are required and the image will
 my name is: Gil Levin.
 class ID : D130222ER.
 email: gil.levin05@gmail.com or gil.levin@munters.com.
-phone number: 0549441181.
 
